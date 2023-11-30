@@ -7,21 +7,16 @@ function Employees() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCriteria, setFilterCriteria] = useState('');
 
-const fetchData = () => {
-  fetch("http://localhost:8080/api/v1/getAll")
+  const fetchData = () => {
+    fetch("http://localhost:8080/api/v1/getAll")
       .then(response => response.json())
-      .then(data => setEmployeeData(data))  // Remove the array wrapping here
+      .then(data => setEmployeeData(data))
       .catch(error => console.error('Error fetching data: ', error));
-};
-
-
+  };
 
   useEffect(() => {
-    fetchData(); //Calls and fetches data from the backend
-
-    const intervalId = setInterval(() => {
-      fetchData();
-  }, 1000);
+    fetchData();
+    const intervalId = setInterval(fetchData, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -30,20 +25,22 @@ const fetchData = () => {
     const fullName = `${employee.firstName} ${employee.lastName}`;
     return (
       fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-       (filterCriteria === '' || employee.jobTitle === filterCriteria)
+      (filterCriteria === '' || employee.jobTitle === filterCriteria)
     );
   });
 
   return (
     <div className='employeeList mt-5'>
-
       <div className='mb-3 search'>
-        {/* <label htmlFor='searchInput' className='form-label'>Search:</label> */}
-        <input type='text' className='form-control'id='searchInput' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-        <button className='btn btn-primary'>Search</button>
+        <input
+          type='text'
+          placeholder='Search'
+          className='form-control'
+          id='searchInput'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
-
-
 
       <table className='table'>
         <thead>
@@ -57,7 +54,7 @@ const fetchData = () => {
           </tr>
         </thead>
         <tbody>
-          {employeeData.map(employee => (
+          {filteredEmployees.map((employee) => (
             <tr key={employee.documentId}>
               <th scope='row'>{employee.documentId}</th>
               <td>{employee.firstName}</td>
