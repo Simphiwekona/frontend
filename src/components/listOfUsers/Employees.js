@@ -7,11 +7,23 @@ function Employees() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCriteria, setFilterCriteria] = useState('');
 
-  useEffect(() => {
-    fetch("http://localhost:8080/api/v1/getAll")
+const fetchData = () => {
+  fetch("http://localhost:8080/api/v1/getAll")
       .then(response => response.json())
       .then(data => setEmployeeData(data))  // Remove the array wrapping here
       .catch(error => console.error('Error fetching data: ', error));
+};
+
+
+
+  useEffect(() => {
+    fetchData(); //Calls and fetches data from the backend
+
+    const intervalId = setInterval(() => {
+      fetchData();
+  }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const filteredEmployees = employeeData.filter(employee => {

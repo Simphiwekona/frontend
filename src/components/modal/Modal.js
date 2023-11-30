@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 
 function EmployerModal() {
     const [show, setShow] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false)
 
     const [employee, setEmployee] = useState({
         firstName: '',
@@ -39,7 +40,11 @@ function EmployerModal() {
             console.error('Error:', error);
         });
 
-        handleClose();
+        setShowSuccess(true);
+        setTimeout(() => {
+            setShowSuccess(false)
+            handleClose();
+        }, 3000);
 
     }
 

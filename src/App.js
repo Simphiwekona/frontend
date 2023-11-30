@@ -6,7 +6,12 @@ import EmployerModal from './components/modal/Modal';
 function App() {
   return (
     <div className="App">
-      <h1>Employee Portal</h1>
+      <nav className='navbar bg-body-tertiary'>
+        <div className='container-fluid d-flex justify-content-between'>
+          <h3 className='navbar-brand'>Employee Portal</h3>
+          <EmployerModal />
+        </div>
+      </nav>
 
       <div className='container'>
         <div className='row'>
@@ -14,14 +19,14 @@ function App() {
             <input type='text' placeholder='Search' className='form-control mt-4' />
             
           </div> */}
-          <div className='col-4'>
+          {/* <div className='col-4'>
             <EmployerModal />
-          </div>
+          </div> */}
 
           <Employees />
         </div>
 
-        </div>
+      </div>
     </div>
   );
 }
