@@ -10,9 +10,10 @@ function App() {
 
       <div className='container'>
         <div className='row'>
-          <div className='col-8'>
+          {/* <div className='col-8'>
             <input type='text' placeholder='Search' className='form-control mt-4' />
-          </div>
+            
+          </div> */}
           <div className='col-4'>
             <EmployerModal />
           </div>

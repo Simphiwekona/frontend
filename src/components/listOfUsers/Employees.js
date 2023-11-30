@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './employee.css'
+
 
 function Employees() {
   const [employeeData, setEmployeeData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterCriteria, setFilterCriteria] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/getAll")
@@ -10,8 +14,25 @@ function Employees() {
       .catch(error => console.error('Error fetching data: ', error));
   }, []);
 
+  const filteredEmployees = employeeData.filter(employee => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    return (
+      fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+       (filterCriteria === '' || employee.jobTitle === filterCriteria)
+    );
+  });
+
   return (
     <div className='employeeList mt-5'>
+
+      <div className='mb-3 search'>
+        {/* <label htmlFor='searchInput' className='form-label'>Search:</label> */}
+        <input type='text' className='form-control'id='searchInput' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+        <button className='btn btn-primary'>Search</button>
+      </div>
+
+
+
       <table className='table'>
         <thead>
           <tr>
