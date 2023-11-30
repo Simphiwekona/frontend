@@ -1,5 +1,7 @@
 # Employee Management App - Frontend
 
+## Note: The Employee Management App frontend won't function properly without a running instance of the associated Spring Boot backend. Please ensure that the backend is running before using the frontend.
+
 ## Overview
 
 Welcome to the Employee Management App frontend! This application is designed to capture and display information about employees in a user-friendly interface. The frontend is built using HTML, CSS, JavaScript, and Bootstrap for styling.
@@ -26,10 +28,15 @@ This frontend communicates with a Spring Boot backend, which performs the follow
 
 To run the frontend locally, follow these steps:
 
-1. Clone the repository to your local machine:
+1. Clone the frontend repository to your local machine:
 
    ```bash
    git clone https://github.com/Simphiwekona/portal-frontend.git
+
+2. Clone the backend repository to your local machine:
+
+    ```bash
+    https://github.com/Simphiwekona/portal-backend.git
 
 # Getting Started with the App
 
