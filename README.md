@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Employee Management App - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Welcome to the Employee Management App frontend! This application is designed to capture and display information about employees in a user-friendly interface. The frontend is built using HTML, CSS, JavaScript, and Bootstrap for styling.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Employee Capture:** Easily add new employees to the system by filling out a form with essential details such as name, position, and contact information.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Employee Display:** View a comprehensive table displaying all captured employees' information, making it convenient to track and manage your workforce.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Data Fetching via API:** The frontend interacts with a Spring Boot backend through an API to retrieve and display employee data.
 
-### `npm test`
+- **Bootstrap Styling:** The application leverages Bootstrap for a responsive and visually appealing design, ensuring a seamless user experience across different devices.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backend Integration
 
-### `npm run build`
+This frontend communicates with a Spring Boot backend, which performs the following tasks:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **In-Memory Storage:** Employee data is initially stored in-memory within the Spring Boot application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Firestore Database:** Additionally, employee data is persistently stored in a Firestore database, providing a scalable and reliable solution for data management.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+To run the frontend locally, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository to your local machine:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   git clone https://github.com/Simphiwekona/portal-frontend.git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Getting Started with the App
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- First you have to clone the project from gitHub : https://github.com/Simphiwekona/portal-frontend.git
+- After cloning, open terminal inside the root of the project, then run **npm install** to install the node modules folder.
+- After everything is installed, you can proceed to run `npm start` which will start the application.
+- After the server has started, on the browser enter : **localhost:3000**
 
-## Learn More
+# Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Add Employee:
+- Click on the "add Employee" button
+- Fill out form with the required employee details.
+- Click "Add Employee" to add the employee to the system.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## View Employees:
+- The main page displays a table with all captured employee information.
+- Each row represents an individual employee, and columes contain relevent details
 
-### Code Splitting
+## Data Feteching:
+- Employee data is fetched from the Spring Boot backend via an API.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Responsive Design
+- The application is designed with Bootstrap, ensurring a responsive layout on various screen sizes
 
-### Analyzing the Bundle Size
+# Dependencies
+- **Bootstrap(v5.0.0):** Used for styling and ensuring a consistent and modern UI.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Issue
+- If you encounter any issues or have suggestions for improvement, please open an issue on the GitHub repository.

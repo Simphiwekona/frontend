@@ -6,18 +6,53 @@ function Employees() {
   const [employeeData, setEmployeeData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCriteria, setFilterCriteria] = useState('');
+  const [loadingData, setLoadingData] = useState(true);
 
   const fetchData = () => {
-    fetch("http://localhost:8080/api/v1/getAll")
-      .then(response => response.json())
-      .then(data => setEmployeeData(data))
-      .catch(error => console.error('Error fetching data: ', error));
+    return fetch("http://localhost:8080/api/v1/getAll")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+        throw error; // Rethrow the error so that it can be caught in the calling code
+      });
   };
-
+  const handleDelete = (documentId) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this employee?');
+    
+    if (confirmDelete) {
+      fetch(`http://localhost:8080/api/v1/delete?documentId=${documentId}`, {
+        method: 'DELETE',
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          setEmployeeData((prevData) =>
+            prevData.filter((employee) => employee.documentId !== documentId)
+          );
+        })
+        .catch(error => console.error('Error deleting employee: ', error));
+    }
+  };
+  
+  
   useEffect(() => {
-    fetchData();
-    const intervalId = setInterval(fetchData, 1000);
-
+    const fetchDataAndHandleError = () => {
+      fetchData()
+        .then(data => setEmployeeData(data))
+        .catch(error => console.error('Error setting employee data: ', error))
+        .finally(() => setLoadingData(false));
+    };
+  
+    fetchDataAndHandleError(); // Initial fetch
+  
+    const intervalId = setInterval(fetchDataAndHandleError, 1000);
+  
     return () => clearInterval(intervalId);
   }, []);
 
@@ -38,10 +73,16 @@ function Employees() {
           className='form-control'
           id='searchInput'
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setSearchQuery(e.target.value)
+          }}
         />
       </div>
-
+      
+      {loadingData ? (
+        <p>Loading...</p>
+      ): (
       <table className='table'>
         <thead>
           <tr>
@@ -62,10 +103,12 @@ function Employees() {
               <td>{employee.jobTitle}</td>
               <td>{employee.description}</td>
               <td>{employee.email}</td>
+              
             </tr>
           ))}
         </tbody>
       </table>
+      )}
     </div>
   );
 }
